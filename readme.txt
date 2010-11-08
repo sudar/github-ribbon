@@ -3,7 +3,7 @@ Contributors: sudar
 Tags: github, ribbon, git
 Requires at least: 2.8
 Tested up to: 3.0.1
-Stable tag: 0.1
+Stable tag: 0.2
 
 Adds "Fork me on Github" ribbons to your WordPress posts
 
@@ -29,11 +29,17 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 1. Plugin in action in author's blog
 
+2. Configuration screen
+
 == Changelog ==
 
 ###v0.1 (2010-08-04)
 
 *   Initial Release
+
+###v0.2 (2010-11-08)
+
+*   Added option to use CSS3 ribbons
 
 ==Readme Generator== 
 

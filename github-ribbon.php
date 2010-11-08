@@ -4,12 +4,13 @@ Plugin Name: Github Ribbon
 Plugin URI: http://sudarmuthu.com/wordpress/github-ribbon
 Description: Adds "Fork me on Github" ribbons to your WordPress posts.
 Author: Sudar
-Version: 0.1
+Version: 0.2
 Author URI: http://sudarmuthu.com/
 Text Domain: github-ribbon
 
 === RELEASE NOTES ===
 2010-09-04 - v0.1 - Initial Release
+2010-11-08 - v0.2 - Added option to use CSS3 ribbons
 */
 
 /*  Copyright 2010  Sudar Muthu  (email : sudar@sudarmuthu.com)
@@ -55,6 +56,9 @@ class GithubRibbon {
         /* Use the save_post action to do something with the data entered */
         add_action('save_post', array(&$this, 'save_postdata'));
 
+        // Enqueue the script
+        add_action('template_redirect', array(&$this, 'add_style'));
+
         // Register filters
         add_filter('the_content', array(&$this, 'add_ribbon') , 99);
 
@@ -83,6 +87,7 @@ class GithubRibbon {
         add_settings_field('enable-ribbon', __('Show Github Ribbons', 'github-ribbon'), array(&$this, 'gr_enable_ribbon_callback'), __FILE__, 'gr_global_section');
         add_settings_field('github-url', __('Github URL', 'github-ribbon'), array(&$this, 'gr_github_url_callback'), __FILE__, 'gr_global_section');
         add_settings_field('ribbon-type', __('Ribbon Type', 'github-ribbon'), array(&$this, 'gr_ribbon_type_callback'), __FILE__, 'gr_global_section');
+        add_settings_field('ribbon-button-type', __('Ribbon Button Type', 'github-ribbon'), array(&$this, 'gr_ribbon_button_type_callback'), __FILE__, 'gr_global_section');
 
     }
 
@@ -240,6 +245,17 @@ class GithubRibbon {
     }
 
     /**
+     * Include CSS3 Ribbon styles
+     *
+     */
+    function add_style() {
+        $options = get_option('github-ribbon-options');
+        if ($options['ribbon-button-type'] == 'CSS3 ribbons') {
+            wp_enqueue_style('github-ribbon', plugin_dir_url(__FILE__) . 'styles/github-ribbon.css');
+        }
+    }
+
+    /**
      * Add the github ribbon
      * 
      * @global object $post Current post
@@ -248,22 +264,24 @@ class GithubRibbon {
      */
     function add_ribbon($content) {
 
-        global $post;
-        $options = get_option('github-ribbon-options');
+        if (!is_feed()) {
+            global $post;
+            $options = get_option('github-ribbon-options');
 
-        $gr_overridden = get_post_meta($post->ID, 'gr_overridden', true);
+            $gr_overridden = get_post_meta($post->ID, 'gr_overridden', true);
 
-        if ($gr_overridden == "1") {
-            // if option per post/page is set
-            $gr_options = get_post_meta($post->ID, 'gr_options', true);
-            if (is_single() && $gr_options['enable-ribbon'] == "Show") {
-                // Ribbon is enabled
-                $content = $this->append_ribbon($content, $gr_options);
-            }
-        } else {
-            //Option per post/page is not set
-            if ($options['enable-ribbon'] == "Show") {
-                $content = $this->append_ribbon($content, $options);
+            if ($gr_overridden == "1") {
+                // if option per post/page is set
+                $gr_options = get_post_meta($post->ID, 'gr_options', true);
+                if (is_single() && $gr_options['enable-ribbon'] == "Show") {
+                    // Ribbon is enabled
+                    $content = $this->append_ribbon($content, $gr_options);
+                }
+            } else {
+                //Option per post/page is not set
+                if ($options['enable-ribbon'] == "Show") {
+                    $content = $this->append_ribbon($content, $options);
+                }
             }
         }
         return $content;
@@ -278,7 +296,7 @@ class GithubRibbon {
      */
     function append_ribbon($content, $options) {
         if (!$this->ribbon_placed) {
-            $ribbon = github_ribbon($options['ribbon-type'], $options['github-url'], false);
+            $ribbon = github_ribbon($options['ribbon-type'], $options['github-url'], $options['ribbon-button-type'], false);
             $content = $content . $ribbon;
             $this->ribbon_placed = true;
         }
@@ -286,7 +304,7 @@ class GithubRibbon {
         return $content;
     }
 
-    // ---------------------------Callback functions (Should be in PHP5 only environment) ----------------------------------------------------------
+    // ---------------------------Callback functions ----------------------------------------------------------
 
     /**
      * Validate the options entered by the user
@@ -342,6 +360,23 @@ class GithubRibbon {
             echo "<option value='" . $ribbon_class->getConstant($item) . "' " . selected($ribbon_class->getConstant($item), $options['ribbon-type'], false) . " >$item</option>";
         }
         echo "</select>";
+    }
+
+    /**
+     * Callback for Ribbon button type
+     *
+     */
+    function gr_ribbon_button_type_callback() {
+        $options = get_option('github-ribbon-options');
+
+        $ribbon_button_type = $options['ribbon-button-type'];
+        $ribbon_button_type = ($ribbon_button_type == 'CSS3 ribbons') ? $ribbon_button_type : 'Image ribbons' ;
+
+        $items = array("Image ribbons", "CSS3 ribbons");
+        foreach($items as $item) {
+            echo "<label><input " . checked($item, $ribbon_button_type , false) . " value='$item' name='github-ribbon-options[ribbon-button-type]' type='radio' /> $item</label> ";
+        }
+        _e("(Will not work in IE)", 'github-ribbon');
     }
 
     // PHP4 compatibility
@@ -431,13 +466,13 @@ EOD;
 EOD;
                 break;
 
-            case self::GREY_LEFT:
+            case self::GRAY_LEFT:
                 return <<<EOD
 <img style="position: fixed; top: 0; left: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub" />
 EOD;
                 break;
 
-            case self::GREY_RIGHT:
+            case self::GRAY_RIGHT:
                 return <<<EOD
 <img style="position: fixed; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub" />
 EOD;
@@ -467,9 +502,31 @@ EOD;
  * @param boolean $display
  * @return either return the ribbon tags or print it based on display parameter
  */
-function github_ribbon($ribbon_type, $github_url, $display = TRUE) {
+function github_ribbon($ribbon_type, $github_url, $ribbon_button_type = 'Image ribbons', $display = TRUE) {
 
-    $output = '<a href="' . $github_url . '">' . GithubRibbonType::get_ribbon_image($ribbon_type) . '</a>';
+    $output = '';
+    
+    if ($ribbon_button_type == 'CSS3 ribbons') {
+        $ribbon_class = new ReflectionClass('GithubRibbonType');
+        $ribbon_types = $ribbon_class->getConstants();
+        $ribbon_types = array_flip($ribbon_types);
+
+        $ribbon_options = split('_', $ribbon_types[$ribbon_type]);
+        $ribbon_color = strtolower($ribbon_options[0]);
+        $ribbon_pos   = strtolower($ribbon_options[1]);
+        
+        $output = <<<EOD
+
+      <div class="$ribbon_pos ribbon-holder">
+        <a href="$github_url" class="$ribbon_color ribbon">
+          <span class="text">Fork me on GitHub</span>
+        </a>
+      </div>
+
+EOD;
+    } else {
+        $output = '<a href="' . $github_url . '">' . GithubRibbonType::get_ribbon_image($ribbon_type) . '</a>';
+    }
     
     if ($display) {
         echo $output;
