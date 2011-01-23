@@ -4,13 +4,15 @@ Plugin Name: Github Ribbon
 Plugin URI: http://sudarmuthu.com/wordpress/github-ribbon
 Description: Adds "Fork me on Github" ribbons to your WordPress posts.
 Author: Sudar
-Version: 0.2
+Version: 0.3
+Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
 Author URI: http://sudarmuthu.com/
 Text Domain: github-ribbon
 
 === RELEASE NOTES ===
 2010-09-04 - v0.1 - Initial Release
 2010-11-08 - v0.2 - Added option to use CSS3 ribbons
+2011-01-23 - v0.3 - Added Dutch Translations
 */
 
 /*  Copyright 2010  Sudar Muthu  (email : sudar@sudarmuthu.com)
