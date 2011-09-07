@@ -4,7 +4,7 @@ Plugin Name: Github Ribbon
 Plugin URI: http://sudarmuthu.com/wordpress/github-ribbon
 Description: Adds "Fork me on Github" ribbons to your WordPress posts.
 Author: Sudar
-Version: 0.3
+Version: 0.4
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
 Author URI: http://sudarmuthu.com/
 Text Domain: github-ribbon
@@ -13,6 +13,7 @@ Text Domain: github-ribbon
 2010-09-04 - v0.1 - Initial Release
 2010-11-08 - v0.2 - Added option to use CSS3 ribbons
 2011-01-23 - v0.3 - Added Dutch Translations
+2011-09-07 - v0.4 - Added CSS style to hide ribbon on printed pages
 */
 
 /*  Copyright 2010  Sudar Muthu  (email : sudar@sudarmuthu.com)
@@ -254,6 +255,7 @@ class GithubRibbon {
         $options = get_option('github-ribbon-options');
         if ($options['ribbon-button-type'] == 'CSS3 ribbons') {
             wp_enqueue_style('github-ribbon', plugin_dir_url(__FILE__) . 'styles/github-ribbon.css');
+            wp_enqueue_style('github-ribbon-print', plugin_dir_url(__FILE__) . 'styles/github-ribbon-print.css', array(), false, 'print');
         }
     }
 
@@ -519,7 +521,7 @@ function github_ribbon($ribbon_type, $github_url, $ribbon_button_type = 'Image r
         
         $output = <<<EOD
 
-      <div class="$ribbon_pos ribbon-holder">
+      <div class = "github-ribbon" class="$ribbon_pos ribbon-holder">
         <a href="$github_url" class="$ribbon_color ribbon">
           <span class="text">Fork me on GitHub</span>
         </a>
@@ -527,7 +529,7 @@ function github_ribbon($ribbon_type, $github_url, $ribbon_button_type = 'Image r
 
 EOD;
     } else {
-        $output = '<a href="' . $github_url . '">' . GithubRibbonType::get_ribbon_image($ribbon_type) . '</a>';
+        $output = '<a class = "github-ribbon" href="' . $github_url . '">' . GithubRibbonType::get_ribbon_image($ribbon_type) . '</a>';
     }
     
     if ($display) {

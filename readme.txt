@@ -3,8 +3,8 @@ Contributors: sudar
 Tags: github, ribbon, git
 Requires at least: 2.8
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
-Tested up to: 3.0.4
-Stable tag: 0.3
+Tested up to: 3.2.1
+Stable tag: 0.4
 
 Adds "Fork me on Github" ribbons to your WordPress posts
 
@@ -48,6 +48,10 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 ###v0.3 (2011-01-23)
 
 *   Added Dutch translations
+
+###v0.4 (2011-09-07)
+
+*   Added CSS style to hide ribbon on printed pages
 
 ==Readme Generator== 
 
