@@ -4,7 +4,7 @@ Tags: github, ribbon, git
 Requires at least: 2.8
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
 Tested up to: 3.2.1
-Stable tag: 0.4
+Stable tag: 0.5
 
 Adds "Fork me on Github" ribbons to your WordPress posts
 
@@ -15,6 +15,7 @@ Adds "Fork me on Github" ribbons to your WordPress posts
 ### Translation
 
 * Dutch (Thanks Rene of [WPwebshop ][2])
+* Spanish (Thanks Mike Arias of [InMotion Hosting][3])
 
 The pot file is available with the Plugin. If you are willing to do translation for the Plugin, use the pot file to create the .po files for your language and let me know. I will add it to the Plugin after giving credit to you.
 
@@ -24,6 +25,7 @@ Support for the Plugin is available from the [Plugin's home page][1]. If you hav
 
  [1]: http://sudarmuthu.com/wordpress/github-ribbon
  [2]: http://wpwebshop.com/
+ [3]: http://www.inmotionhosting.com/
 	
 == Installation ==
 
@@ -52,6 +54,10 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 ###v0.4 (2011-09-07)
 
 *   Added CSS style to hide ribbon on printed pages
+
+###v0.5 (2011-11-28)
+
+*   Added Spanish translations
 
 ==Readme Generator== 
 
