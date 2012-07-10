@@ -3,8 +3,8 @@ Contributors: sudar
 Tags: github, ribbon, git
 Requires at least: 2.8
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
-Tested up to: 3.2.1
-Stable tag: 0.5
+Tested up to: 3.4.1
+Stable tag: 0.6
 
 Adds "Fork me on Github" ribbons to your WordPress posts
 
@@ -16,6 +16,7 @@ Adds "Fork me on Github" ribbons to your WordPress posts
 
 * Dutch (Thanks Rene of [WPwebshop ][2])
 * Spanish (Thanks Mike Arias of [InMotion Hosting][3])
+* Hindi (Thanks Love Chandel)
 
 The pot file is available with the Plugin. If you are willing to do translation for the Plugin, use the pot file to create the .po files for your language and let me know. I will add it to the Plugin after giving credit to you.
 
@@ -58,6 +59,9 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 ###v0.5 (2011-11-28)
 
 *   Added Spanish translations
+
+### v0.6 (2012-07-10) (Dev time: 0.5 hour)
+    - Added Hindi translations
 
 ==Readme Generator== 
 
