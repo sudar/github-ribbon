@@ -17,6 +17,7 @@ Text Domain: github-ribbon
 2011-11-28 - v0.5 - Added Spanish Translations
 2012-07-10 - v0.6 - (Dev time: 0.5 hour)
                   - Added Hindi translations
+                  - Added Lithuanian translations
 */
 
 /*  Copyright 2010  Sudar Muthu  (email : sudar@sudarmuthu.com)

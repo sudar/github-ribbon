@@ -17,6 +17,7 @@ Adds "Fork me on Github" ribbons to your WordPress posts
 * Dutch (Thanks Rene of [WPwebshop ][2])
 * Spanish (Thanks Mike Arias of [InMotion Hosting][3])
 * Hindi (Thanks Love Chandel)
+* Lithuanian (Thanks Vincent G)
 
 The pot file is available with the Plugin. If you are willing to do translation for the Plugin, use the pot file to create the .po files for your language and let me know. I will add it to the Plugin after giving credit to you.
 
@@ -61,7 +62,8 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 *   Added Spanish translations
 
 ### v0.6 (2012-07-10) (Dev time: 0.5 hour)
-    - Added Hindi translations
+*   Added Hindi translations
+*   Added Lithuanian translations
 
 ==Readme Generator== 
 
