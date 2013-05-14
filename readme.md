@@ -90,19 +90,19 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 *   Added Hindi translations
 *   Added Lithuanian translations
 
-###v0.5 (2011-11-28) ###
+### v0.5 (2011-11-28) ###
 *   Added Spanish translations
 
-###v0.4 (2011-09-07) ###
+### v0.4 (2011-09-07) ###
 *   Added CSS style to hide ribbon on printed pages
 
-###v0.3 (2011-01-23) ###
+### v0.3 (2011-01-23) ###
 *   Added Dutch translations
 
-###v0.2 (2010-11-08) ###
+### v0.2 (2010-11-08) ###
 *   Added option to use CSS3 ribbons
 
-###v0.1 (2010-08-04) ###
+### v0.1 (2010-08-04) ###
 *   Initial Release
 
 ## Readme Generator ##
