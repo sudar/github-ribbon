@@ -1,81 +1,85 @@
-# Translation of the WordPress plugin Github Ribbon 0.1 by Sudar.
-# Copyright (C) 2010 Sudar
+# Copyright (C) 2013 Github Ribbon
 # This file is distributed under the same license as the Github Ribbon package.
-# Sudar <sudar@sudarmuthu.com>, 2010.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Github Ribbon 0.1\n"
+"Project-Id-Version: Github Ribbon 0.8\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/github-ribbon\n"
-"POT-Creation-Date: 2010-09-07 12:51+0000\n"
-"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2013-05-14 14:54:08+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 
-#. #-#-#-#-#  github-ribbon.pot (Github Ribbon 0.1)  #-#-#-#-#
+#. #-#-#-#-#  github-ribbon.pot (Github Ribbon 0.8)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: github-ribbon.php:70 github-ribbon.php:94 github-ribbon.php:96
+#: github-ribbon.php:88 github-ribbon.php:113 github-ribbon.php:115
 msgid "Github Ribbon"
 msgstr ""
 
-#: github-ribbon.php:81
+#: github-ribbon.php:99
 msgid "Global Settings"
 msgstr ""
 
-#: github-ribbon.php:83
+#: github-ribbon.php:101
 msgid "Show Github Ribbons"
 msgstr ""
 
-#: github-ribbon.php:84
+#: github-ribbon.php:102
 msgid "Github URL"
 msgstr ""
 
-#: github-ribbon.php:85
+#: github-ribbon.php:103
 msgid "Ribbon Type"
 msgstr ""
 
-#: github-ribbon.php:119
+#: github-ribbon.php:104
+msgid "Ribbon Button Type"
+msgstr ""
+
+#: github-ribbon.php:138
 msgid "Override global option"
 msgstr ""
 
-#: github-ribbon.php:131
+#: github-ribbon.php:150
 msgid "Github Url:"
 msgstr ""
 
-#: github-ribbon.php:135
+#: github-ribbon.php:154
 msgid "Ribbon type:"
 msgstr ""
 
-#: github-ribbon.php:204
+#: github-ribbon.php:221
 msgid "Settings"
 msgstr ""
 
-#: github-ribbon.php:216
+#: github-ribbon.php:233
 msgid "plugin"
 msgstr ""
 
-#: github-ribbon.php:216
+#: github-ribbon.php:233
 msgid "Version"
 msgstr ""
 
-#: github-ribbon.php:216
+#: github-ribbon.php:233
 msgid "by"
 msgstr ""
 
-#: github-ribbon.php:226
+#: github-ribbon.php:243
 msgid "Github Ribbon Settings"
 msgstr ""
 
-#: github-ribbon.php:233
+#: github-ribbon.php:251
 msgid "Save Changes"
 msgstr ""
 
-#: github-ribbon.php:309
+#: github-ribbon.php:343
 msgid "Enter the global configuration options for Github Ribbon."
+msgstr ""
+
+#: github-ribbon.php:395
+msgid "(Will not work in IE)"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
