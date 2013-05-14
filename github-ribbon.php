@@ -1,13 +1,16 @@
 <?php
 /**
 Plugin Name: Github Ribbon
+Plugin Script: github-ribbon.php
 Plugin URI: http://sudarmuthu.com/wordpress/github-ribbon
 Description: Adds "Fork me on Github" ribbons to your WordPress posts.
 Author: Sudar
-Version: 0.7
+Version: 0.8
+License: GPL
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
 Author URI: http://sudarmuthu.com/
 Text Domain: github-ribbon
+Domain Path: languages/
 
 === RELEASE NOTES ===
 2010-09-04 - v0.1 - Initial Release
@@ -20,6 +23,8 @@ Text Domain: github-ribbon
                   - Added Lithuanian translations
 2012-12-08 - v0.7 - (Dev time: 0.5 hour)
                   - Added German translations
+2013-05-13 - v0.8 - (Dev time: 0.5 hour)
+                  - Fixed a bug which prevented the ribbon from showing on pages
 */
 
 /*  Copyright 2010  Sudar Muthu  (email : sudar@sudarmuthu.com)
@@ -43,6 +48,7 @@ Text Domain: github-ribbon
  */
 class GithubRibbon {
 
+    const VERSION = '0.8';
     private $ribbon_placed = false; //flag to see if the ribbon is already placed
 
     /**
@@ -63,17 +69,16 @@ class GithubRibbon {
         add_action('admin_menu', array(&$this, 'add_custom_box'));
 
         /* Use the save_post action to do something with the data entered */
-        add_action('save_post', array(&$this, 'save_postdata'));
+        add_action( 'save_post', array( &$this, 'save_postdata' ) );
 
         // Enqueue the script
         add_action('template_redirect', array(&$this, 'add_style'));
 
         // Register filters
-        add_filter('the_content', array(&$this, 'add_ribbon') , 99);
+        add_filter('the_content', array(&$this, 'add_ribbon'), 99);
 
         $plugin = plugin_basename(__FILE__);
         add_filter("plugin_action_links_$plugin", array(&$this, 'add_action_links'));
-
     }
 
     /**
@@ -201,11 +206,9 @@ class GithubRibbon {
                 'ribbon-type' => $ribbon_type
             );
             update_post_meta($post_id, 'gr_options', $gr_options);
-        } else {
-            $choice = $_POST['gr_overridden'];
-            $choice = ($choice == '1')? '1' : '0';
-            update_post_meta($post_id, 'gr_overridden', $choice);
         }
+
+        return $post_id;
     }
 
     /**
@@ -239,14 +242,18 @@ class GithubRibbon {
             <?php screen_icon(); ?>
             <h2><?php _e( 'Github Ribbon Settings', 'github-ribbon' ); ?></h2>
 
-            <form id="smer_form" method="post" action="options.php">
-                <?php settings_fields('github-ribbon-options'); ?>
-        		<?php do_settings_sections(__FILE__); ?>
+            <div id = "poststuff" style = "float:left; width:75%">
+                <form id="smer_form" method="post" action="options.php">
+                    <?php settings_fields('github-ribbon-options'); ?>
+                    <?php do_settings_sections(__FILE__); ?>
 
-                <p class="submit">
-                    <input type="submit" name="github-ribbon-submit" class="button-primary" value="<?php _e('Save Changes', 'github-ribbon') ?>" />
-                </p>
-            </form>
+                    <p class="submit">
+                        <input type="submit" name="github-ribbon-submit" class="button-primary" value="<?php _e('Save Changes', 'github-ribbon') ?>" />
+                    </p>
+                </form>
+            </div>
+
+            <iframe frameBorder="0" height = "950" src = "http://sudarmuthu.com/projects/wordpress/github-ribbon/sidebar.php?color=<?php echo get_user_option('admin_color'); ?>&version=<?php echo self::VERSION; ?>"></iframe>
         </div>
 <?php
         // Display credits in Footer
@@ -272,25 +279,24 @@ class GithubRibbon {
      * @param string $content Post content
      * @return string modifiyed content
      */
-    function add_ribbon($content) {
+    function add_ribbon( $content ) {
+        global $post;
 
-        if (!is_feed()) {
-            global $post;
-            $options = get_option('github-ribbon-options');
+        if ( !is_feed() && is_singular() ) {
+            $global_options = get_option('github-ribbon-options');
+            $gr_overridden = get_post_meta($post->ID, 'gr_overridden', TRUE);
 
-            $gr_overridden = get_post_meta($post->ID, 'gr_overridden', true);
-
-            if ($gr_overridden == "1") {
+            if ( $gr_overridden == '1' ) {
                 // if option per post/page is set
-                $gr_options = get_post_meta($post->ID, 'gr_options', true);
-                if (is_single() && $gr_options['enable-ribbon'] == "Show") {
+                $gr_options = get_post_meta($post->ID, 'gr_options', TRUE);
+                if ( $gr_options['enable-ribbon'] == "Show" ) {
                     // Ribbon is enabled
                     $content = $this->append_ribbon($content, $gr_options);
                 }
             } else {
                 //Option per post/page is not set
-                if ($options['enable-ribbon'] == "Show") {
-                    $content = $this->append_ribbon($content, $options);
+                if ($global_options['enable-ribbon'] == "Show") {
+                    $content = $this->append_ribbon($content, $global_options);
                 }
             }
         }

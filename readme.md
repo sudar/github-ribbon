@@ -4,7 +4,7 @@
 **Requires at least:** 2.8  
 **Donate Link:** http://sudarmuthu.com/if-you-wanna-thank-me  
 **Tested up to:** 3.5.1  
-**Stable tag:** 0.6  
+**Stable tag:** 0.8  
 
 Adds "Fork me on Github" ribbons to your WordPress posts
 
@@ -15,10 +15,10 @@ Github Ribbons is a WordPress Plugin that allows you to add "Fork me on Github" 
 ### Features
 The following are some of the features of the Plugin
 
--You can choose between image based ribbons or CSS3 based ribbons.
--You can choose whether to show the ribbon on the right side or on the left side.
--You can choose any one of the 6 different colours that are available.
--Configuration can be set either globally or on a post by post basic.
+- You can choose between image based ribbons or CSS3 based ribbons.
+- You can choose whether to show the ribbon on the right side or on the left side.
+- You can choose any one of the 6 different colours that are available.
+- Configuration can be set either globally or on a post by post basic.
 
 ### Styling using CSS
 
@@ -80,9 +80,11 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 ## Changelog ##
 
+### v0.8 (2013-05-14) (Dev time: 0.5 hour) ###
+* Fixed a bug which prevented the ribbon from showing on pages
 
 ### v0.7 (2012-12-08) (Dev time: 0.5 hour) ###
-*   Added German translations
+* Added German translations
 
 ### v0.6 (2012-07-10) (Dev time: 0.5 hour) ###
 *   Added Hindi translations
