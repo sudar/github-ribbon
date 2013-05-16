@@ -74,8 +74,10 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 ## Screenshots ##
 
+![](screenshot-1.png)
 1. Plugin in action in author's blog
 
+![](screenshot-2.png)
 2. Configuration screen
 
 ## Changelog ##
