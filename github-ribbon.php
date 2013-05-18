@@ -5,7 +5,7 @@ Plugin Script: github-ribbon.php
 Plugin URI: http://sudarmuthu.com/wordpress/github-ribbon
 Description: Adds "Fork me on Github" ribbons to your WordPress posts.
 Author: Sudar
-Version: 0.8
+Version: 0.9
 License: GPL
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
 Author URI: http://sudarmuthu.com/
@@ -25,6 +25,8 @@ Domain Path: languages/
                   - Added German translations
 2013-05-13 - v0.8 - (Dev time: 0.5 hour)
                   - Fixed a bug which prevented the ribbon from showing on pages
+2013-05-18 - v0.9 - (Dev time: 0.5 hour)
+                  - Fixed a bug which prevented the ribbon from showing on non pages
 */
 
 /*  Copyright 2010  Sudar Muthu  (email : sudar@sudarmuthu.com)
@@ -48,7 +50,7 @@ Domain Path: languages/
  */
 class GithubRibbon {
 
-    const VERSION = '0.8';
+    const VERSION = '0.9';
     private $ribbon_placed = false; //flag to see if the ribbon is already placed
 
     /**
@@ -277,29 +279,37 @@ class GithubRibbon {
      * 
      * @global object $post Current post
      * @param string $content Post content
-     * @return string modifiyed content
+     * @return string modified content
      */
     function add_ribbon( $content ) {
         global $post;
 
-        if ( !is_feed() && is_singular() ) {
+        if ( !is_feed() ) {
             $global_options = get_option('github-ribbon-options');
-            $gr_overridden = get_post_meta($post->ID, 'gr_overridden', TRUE);
 
-            if ( $gr_overridden == '1' ) {
-                // if option per post/page is set
-                $gr_options = get_post_meta($post->ID, 'gr_options', TRUE);
-                if ( $gr_options['enable-ribbon'] == "Show" ) {
-                    // Ribbon is enabled
-                    $content = $this->append_ribbon($content, $gr_options);
-                }
-            } else {
-                //Option per post/page is not set
-                if ($global_options['enable-ribbon'] == "Show") {
-                    $content = $this->append_ribbon($content, $global_options);
+            if ( is_singular() ) {
+
+                $gr_overridden = get_post_meta($post->ID, 'gr_overridden', TRUE);
+
+                if ( $gr_overridden == '1' ) {
+                    // if option per post/page is set
+                    $gr_options = get_post_meta($post->ID, 'gr_options', TRUE);
+
+                    if ( $gr_options['enable-ribbon'] == "Show" ) {
+                        // Ribbon is enabled
+                        return $this->append_ribbon($content, $gr_options);
+                    } else {
+                        // Ribbon is disabled
+                        return $content;
+                    }
                 }
             }
+
+            if ($global_options['enable-ribbon'] == "Show") {
+                $content = $this->append_ribbon($content, $global_options);
+            }
         }
+
         return $content;
     }
 
@@ -308,11 +318,13 @@ class GithubRibbon {
      *
      * @param string $content The post content
      * @param array $options Options
-     * @return string Modifiyed content
+     * @return string Modified content
      */
     function append_ribbon($content, $options) {
         if (!$this->ribbon_placed) {
-            $ribbon = github_ribbon($options['ribbon-type'], $options['github-url'], $options['ribbon-button-type'], false);
+            $global_options = get_option('github-ribbon-options');
+
+            $ribbon = github_ribbon($options['ribbon-type'], $options['github-url'], $global_options['ribbon-button-type'], false);
             $content = $content . $ribbon;
             $this->ribbon_placed = true;
         }
@@ -533,7 +545,7 @@ function github_ribbon($ribbon_type, $github_url, $ribbon_button_type = 'Image r
         
         $output = <<<EOD
 
-      <div class = "github-ribbon" class="$ribbon_pos ribbon-holder">
+      <div class = "github-ribbon $ribbon_pos ribbon-holder">
         <a href="$github_url" class="$ribbon_color ribbon">
           <span class="text">Fork me on GitHub</span>
         </a>
