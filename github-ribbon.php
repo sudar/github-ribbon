@@ -432,8 +432,8 @@ Class GithubRibbonType {
     const ORANGE_LEFT = 6;
     const ORANGE_RIGHT = 7;
 
-    const GREY_LEFT = 8;
-    const GREY_RIGHT = 9;
+    const GRAY_LEFT = 8;
+    const GRAY_RIGHT = 9;
 
     const WHITE_LEFT = 10;
     const WHITE_RIGHT = 11;
