@@ -4,7 +4,7 @@
 **Requires at least:** 2.8  
 **Donate Link:** http://sudarmuthu.com/if-you-wanna-thank-me  
 **Tested up to:** 3.5.1  
-**Stable tag:** 0.9  
+**Stable tag:** 1.0  
 
 Adds "Fork me on Github" ribbons to your WordPress posts
 
@@ -57,17 +57,14 @@ The following are the features that I am thinking of adding to the Plugin, when 
 
 ## Translation ##
 
-* Dutch (Thanks Rene of [WPwebshop ][2])
-* Spanish (Thanks Mike Arias of [InMotion Hosting][3])
+* Dutch (Thanks Rene of WPwebshop)
+* Spanish (Thanks Mike Arias of InMotion Hosting)
 * Hindi (Thanks Love Chandel)
 * Lithuanian (Thanks Vincent G)
 * German (Thanks  Robert Wetzlmayr)
 
 The pot file is available with the Plugin. If you are willing to do translation for the Plugin, use the pot file to create the .po files for your language and let me know. I will add it to the Plugin after giving credit to you.
 
- [2]: http://wpwebshop.com/
- [3]: http://www.inmotionhosting.com/
-	
 ## Installation ##
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
@@ -79,6 +76,9 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 2. Configuration screen
 
 ## Changelog ##
+
+### v1.0 (2013-05-20) (Dev time: 0.5 hour) ###
+* Fixed a bug which prevented the gray ribbon from showing up properly.
 
 ### v0.9 (2013-05-18) (Dev time: 0.5 hour) ###
 * Fixed a bug which prevented the ribbon from showing on non pages
