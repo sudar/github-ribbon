@@ -5,7 +5,7 @@ Plugin Script: github-ribbon.php
 Plugin URI: http://sudarmuthu.com/wordpress/github-ribbon
 Description: Adds "Fork me on Github" ribbons to your WordPress posts.
 Author: Sudar
-Version: 1.0
+Version: 1.1.0
 License: GPL
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
 Author URI: http://sudarmuthu.com/
@@ -29,6 +29,8 @@ Domain Path: languages/
                   - Fixed a bug which prevented the ribbon from showing on non pages
 2013-05-20 - v1.0 - (Dev time: 0.5 hour)
                   - Fixed a bug which prevented the gray ribbon from showing up properly
+2013-07-30 - v1.1.0 - (Dev time: 0.5 hour)
+                  - Added the ability to open links in a new tab
 */
 
 /*  Copyright 2010  Sudar Muthu  (email : sudar@sudarmuthu.com)
@@ -103,10 +105,10 @@ class GithubRibbon {
         add_settings_section('gr_global_section', __('Global Settings', 'github-ribbon'), array(&$this, 'print_gr_global_section_text'), __FILE__);
 
         add_settings_field('enable-ribbon', __('Show Github Ribbons', 'github-ribbon'), array(&$this, 'gr_enable_ribbon_callback'), __FILE__, 'gr_global_section');
-        add_settings_field('github-url', __('Github URL', 'github-ribbon'), array(&$this, 'gr_github_url_callback'), __FILE__, 'gr_global_section');
         add_settings_field('ribbon-type', __('Ribbon Type', 'github-ribbon'), array(&$this, 'gr_ribbon_type_callback'), __FILE__, 'gr_global_section');
         add_settings_field('ribbon-button-type', __('Ribbon Button Type', 'github-ribbon'), array(&$this, 'gr_ribbon_button_type_callback'), __FILE__, 'gr_global_section');
-
+        add_settings_field('github-url', __('Github URL', 'github-ribbon'), array(&$this, 'gr_github_url_callback'), __FILE__, 'gr_global_section');
+        add_settings_field('ribbon-new-tab', __('', 'github-ribbon'), array(&$this, 'gr_ribbon_new_tab_callback'), __FILE__, 'gr_global_section');
     }
 
     /**
@@ -326,7 +328,7 @@ class GithubRibbon {
         if (!$this->ribbon_placed) {
             $global_options = get_option('github-ribbon-options');
 
-            $ribbon = github_ribbon($options['ribbon-type'], $options['github-url'], $global_options['ribbon-button-type'], false);
+            $ribbon = github_ribbon($options['ribbon-type'], $options['github-url'], $global_options['ribbon-new-tab'], $global_options['ribbon-button-type'], false);
             $content = $content . $ribbon;
             $this->ribbon_placed = true;
         }
@@ -373,7 +375,9 @@ class GithubRibbon {
      */
     function gr_github_url_callback() {
         $options = get_option('github-ribbon-options');
-        echo "<input id='github-url' name='github-ribbon-options[github-url]' size='40' type='text' value='{$options['github-url']}' />";
+        echo "<input id='github-url' name='github-ribbon-options[github-url]' size='40' type='text' value='{$options['github-url']}' ><br>";
+        echo "<input id='ribbon-new-tab' name='github-ribbon-options[ribbon-new-tab]' type='checkbox' value='true' ", checked('true', $options['ribbon-new-tab']), " > ";
+        _e('Open in new tab', 'github-ribbon');
     }
 
     /**
@@ -407,6 +411,10 @@ class GithubRibbon {
             echo "<label><input " . checked($item, $ribbon_button_type , false) . " value='$item' name='github-ribbon-options[ribbon-button-type]' type='radio' /> $item</label> ";
         }
         _e("(Will not work in IE)", 'github-ribbon');
+    }
+
+    function gr_ribbon_new_tab_callback() {
+
     }
 }
 
@@ -524,13 +532,20 @@ EOD;
  *
  * @param GithubRibbonType $ribbon_type
  * @param string $github_url
+ * @param boolean $in_tab
  * @param boolean $display
  * @return either return the ribbon tags or print it based on display parameter
  */
-function github_ribbon($ribbon_type, $github_url, $ribbon_button_type = 'Image ribbons', $display = TRUE) {
+function github_ribbon($ribbon_type, $github_url, $in_tab, $ribbon_button_type = 'Image ribbons', $display = TRUE) {
 
     $output = '';
     
+    if ($in_tab) {
+        $target = ' target = "_blank" ';
+    } else {
+        $target = '';
+    }
+        
     if ($ribbon_button_type == 'CSS3 ribbons') {
         $ribbon_class = new ReflectionClass('GithubRibbonType');
         $ribbon_types = $ribbon_class->getConstants();
@@ -539,18 +554,18 @@ function github_ribbon($ribbon_type, $github_url, $ribbon_button_type = 'Image r
         $ribbon_options = split('_', $ribbon_types[$ribbon_type]);
         $ribbon_color = strtolower($ribbon_options[0]);
         $ribbon_pos   = strtolower($ribbon_options[1]);
-        
+
         $output = <<<EOD
 
       <div class = "github-ribbon $ribbon_pos ribbon-holder">
-        <a href="$github_url" class="$ribbon_color ribbon">
+        <a href="$github_url" class="$ribbon_color ribbon" $target>
           <span class="text">Fork me on GitHub</span>
         </a>
       </div>
 
 EOD;
     } else {
-        $output = '<a class = "github-ribbon" href="' . $github_url . '">' . GithubRibbonType::get_ribbon_image($ribbon_type) . '</a>';
+        $output = '<a class = "github-ribbon" href="' . $github_url . '"' . $target . '>' . GithubRibbonType::get_ribbon_image($ribbon_type) . '</a>';
     }
     
     if ($display) {

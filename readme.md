@@ -3,8 +3,8 @@
 **Tags:** github, ribbon, git  
 **Requires at least:** 2.8  
 **Donate Link:** http://sudarmuthu.com/if-you-wanna-thank-me  
-**Tested up to:** 3.5.1  
-**Stable tag:** 1.0  
+**Tested up to:** 3.5.2  
+**Stable tag:** 1.1.0  
 
 Adds "Fork me on Github" ribbons to your WordPress posts
 
@@ -17,6 +17,7 @@ The following are some of the features of the Plugin
 
 - You can choose between image based ribbons or CSS3 based ribbons.
 - You can choose whether to show the ribbon on the right side or on the left side.
+- You can choose whether the link has to open in a new tab or not.
 - You can choose any one of the 6 different colours that are available.
 - Configuration can be set either globally or on a post by post basic.
 
@@ -76,6 +77,9 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 2. Configuration screen
 
 ## Changelog ##
+
+### v1.1.0 (2013-07-30) (Dev time: 0.5 hour) ###
+* Added the ability to open links in a new tab
 
 ### v1.0 (2013-05-20) (Dev time: 0.5 hour) ###
 * Fixed a bug which prevented the gray ribbon from showing up properly.
