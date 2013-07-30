@@ -408,11 +408,6 @@ class GithubRibbon {
         }
         _e("(Will not work in IE)", 'github-ribbon');
     }
-
-    // PHP4 compatibility
-    function GithubRibbon() {
-        $this->__construct();
-    }
 }
 
 // Start this plugin once all other plugins are fully loaded
