@@ -3,7 +3,7 @@
 Plugin Name: Github Ribbon
 Plugin Script: github-ribbon.php
 Plugin URI: http://sudarmuthu.com/wordpress/github-ribbon
-Description: Adds "Fork me on Github" ribbons to your WordPress posts.
+Description: Adds "Fork me on Github" ribbons to your WordPress posts
 Author: Sudar
 Version: 1.1.0
 License: GPL
@@ -13,24 +13,7 @@ Text Domain: github-ribbon
 Domain Path: languages/
 
 === RELEASE NOTES ===
-2010-09-04 - v0.1 - Initial Release
-2010-11-08 - v0.2 - Added option to use CSS3 ribbons
-2011-01-23 - v0.3 - Added Dutch Translations
-2011-09-07 - v0.4 - Added CSS style to hide ribbon on printed pages
-2011-11-28 - v0.5 - Added Spanish Translations
-2012-07-10 - v0.6 - (Dev time: 0.5 hour)
-                  - Added Hindi translations
-                  - Added Lithuanian translations
-2012-12-08 - v0.7 - (Dev time: 0.5 hour)
-                  - Added German translations
-2013-05-13 - v0.8 - (Dev time: 0.5 hour)
-                  - Fixed a bug which prevented the ribbon from showing on pages
-2013-05-18 - v0.9 - (Dev time: 0.5 hour)
-                  - Fixed a bug which prevented the ribbon from showing on non pages
-2013-05-20 - v1.0 - (Dev time: 0.5 hour)
-                  - Fixed a bug which prevented the gray ribbon from showing up properly
-2013-07-30 - v1.1.0 - (Dev time: 0.5 hour)
-                  - Added the ability to open links in a new tab
+Check readme file for full release notes
 */
 
 /*  Copyright 2010  Sudar Muthu  (email : sudar@sudarmuthu.com)
