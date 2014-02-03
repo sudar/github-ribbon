@@ -1,5 +1,8 @@
 ## Changelog ##
 
+### v1.1.1 (2014-02-03) (Dev time: 0.5 hour) ###
+- Tweak: Make it compatible with WordPress 3.8
+
 ### v1.1.0 (2013-07-30) (Dev time: 0.5 hour) ###
 * Added the ability to open links in a new tab
 

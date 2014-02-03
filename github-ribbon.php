@@ -228,7 +228,6 @@ class GithubRibbon {
     function settings_page() {
 ?>
         <div class="wrap">
-            <?php screen_icon(); ?>
             <h2><?php _e( 'Github Ribbon Settings', 'github-ribbon' ); ?></h2>
 
             <div id = "poststuff" style = "float:left; width:75%">

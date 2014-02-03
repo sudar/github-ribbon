@@ -1,9 +1,9 @@
 # Github Ribbon #
 **Contributors:** sudar  
 **Tags:** github, ribbon, git  
-**Requires at least:** 2.8  
+**Requires at least:** 3.8  
 **Donate Link:** http://sudarmuthu.com/if-you-wanna-thank-me  
-**Tested up to:** 3.5.2  
+**Tested up to:** 3.8.1  
 **Stable tag:** 1.1.0  
 
 Adds "Fork me on Github" ribbons to your WordPress posts
