@@ -91,7 +91,7 @@ class GithubRibbon {
      * Register the settings page
      */
     function register_settings_page() {
-        add_options_page( __('Github Ribbon', 'github-ribbon'), __('Github Ribbon', 'github-ribbon'), 8, 'github-ribbon', array(&$this, 'settings_page') );
+        add_options_page( __( 'Github Ribbon', 'github-ribbon' ), __( 'Github Ribbon', 'github-ribbon' ), 'manage_options', 'github-ribbon', array( &$this, 'settings_page' ) );
     }
 
     /**
@@ -326,7 +326,12 @@ class GithubRibbon {
      */
     function append_ribbon($content, $options) {
         if (!$this->ribbon_placed) {
-            $global_options = get_option('github-ribbon-options');
+            $global_options = wp_parse_args( get_option( 'github-ribbon-options' ), array(
+                'ribbon-type'        => 0,
+                'github-url'         => '',
+                'ribbon-new-tab'     => FALSE,
+                'ribbon_button_type' => 'Image ribbons'
+            ) );
 
             $ribbon = github_ribbon($options['ribbon-type'], $options['github-url'], $global_options['ribbon-new-tab'], $global_options['ribbon-button-type'], false);
             $content = $content . $ribbon;
@@ -536,7 +541,7 @@ EOD;
  * @param boolean $display
  * @return either return the ribbon tags or print it based on display parameter
  */
-function github_ribbon($ribbon_type, $github_url, $in_tab, $ribbon_button_type = 'Image ribbons', $display = TRUE) {
+function github_ribbon($ribbon_type, $github_url, $in_tab = FALSE, $ribbon_button_type = 'Image ribbons', $display = TRUE) {
 
     $output = '';
     
