@@ -68,13 +68,17 @@ The pot file is available with the Plugin. If you are willing to do translation 
 
 ## Installation ##
 
-Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
+Extract the zip file and just drop the contents in the `wp-content/plugins/` directory of your WordPress installation and then activate the Plugin from Plugins page.
 
 ## Screenshots ##
 
-1. Plugin in action in author's blog
+![](screenshot-1.png)
 
-2. Configuration screen
+Plugin in action in author's blog
+
+![](screenshot-1.png)
+
+Configuration screen
 
 ## Readme Generator ##
 
