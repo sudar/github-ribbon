@@ -1,89 +1,90 @@
-# Copyright (C) 2013 Github Ribbon
+# Copyright (C) 2014 Github Ribbon
 # This file is distributed under the same license as the Github Ribbon package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Github Ribbon 1.1.0\n"
+"Project-Id-Version: Github Ribbon 1.1.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/github-ribbon\n"
-"POT-Creation-Date: 2013-07-30 16:37:59+00:00\n"
+"POT-Creation-Date: 2014-02-03 11:05:21+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#. #-#-#-#-#  github-ribbon.pot (Github Ribbon 1.1.0)  #-#-#-#-#
-#. Plugin Name of the plugin/theme
-#: github-ribbon.php:94 github-ribbon.php:119 github-ribbon.php:121
+#: github-ribbon.php:77 github-ribbon.php:102 github-ribbon.php:104
 msgid "Github Ribbon"
 msgstr ""
 
-#: github-ribbon.php:105
+#: github-ribbon.php:88
 msgid "Global Settings"
 msgstr ""
 
-#: github-ribbon.php:107
+#: github-ribbon.php:90
 msgid "Show Github Ribbons"
 msgstr ""
 
-#: github-ribbon.php:108
+#: github-ribbon.php:91
 msgid "Ribbon Type"
 msgstr ""
 
-#: github-ribbon.php:109
+#: github-ribbon.php:92
 msgid "Ribbon Button Type"
 msgstr ""
 
-#: github-ribbon.php:110
+#: github-ribbon.php:93
 msgid "Github URL"
 msgstr ""
 
-#: github-ribbon.php:144
+#: github-ribbon.php:127
 msgid "Override global option"
 msgstr ""
 
-#: github-ribbon.php:156
+#: github-ribbon.php:139
 msgid "Github Url:"
 msgstr ""
 
-#: github-ribbon.php:160
+#: github-ribbon.php:143
 msgid "Ribbon type:"
 msgstr ""
 
-#: github-ribbon.php:227
+#: github-ribbon.php:210
 msgid "Settings"
 msgstr ""
 
-#: github-ribbon.php:239
+#: github-ribbon.php:222
 msgid "plugin"
 msgstr ""
 
-#: github-ribbon.php:239
+#: github-ribbon.php:222
 msgid "Version"
 msgstr ""
 
-#: github-ribbon.php:239
+#: github-ribbon.php:222
 msgid "by"
 msgstr ""
 
-#: github-ribbon.php:249
+#: github-ribbon.php:231
 msgid "Github Ribbon Settings"
 msgstr ""
 
-#: github-ribbon.php:257
+#: github-ribbon.php:239
 msgid "Save Changes"
 msgstr ""
 
-#: github-ribbon.php:359
+#: github-ribbon.php:340
 msgid "Enter the global configuration options for Github Ribbon."
 msgstr ""
 
-#: github-ribbon.php:380
+#: github-ribbon.php:361
 msgid "Open in new tab"
 msgstr ""
 
-#: github-ribbon.php:413
+#: github-ribbon.php:394
 msgid "(Will not work in IE)"
+msgstr ""
+#. Plugin Name of the plugin/theme
+msgid "Github Ribbon"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -91,7 +92,7 @@ msgid "http://sudarmuthu.com/wordpress/github-ribbon"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "Adds \"Fork me on Github\" ribbons to your WordPress posts."
+msgid "Adds \"Fork me on Github\" ribbons to your WordPress posts"
 msgstr ""
 
 #. Author of the plugin/theme
