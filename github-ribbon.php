@@ -38,7 +38,7 @@ Check readme file for full release notes
 class GithubRibbon {
 
     const VERSION = '1.0';
-    private $ribbon_placed = false; //flag to see if the ribbon is already placed
+    private $ribbon_placed = FALSE; //flag to see if the ribbon is already placed
 
     /**
      * Initalize the plugin by registering the hooks
@@ -46,7 +46,7 @@ class GithubRibbon {
     function __construct() {
 
         // Load localization domain
-        load_plugin_textdomain( 'github-ribbon', false, dirname(plugin_basename(__FILE__)) . '/languages' );
+        load_plugin_textdomain( 'github-ribbon', FALSE, dirname(plugin_basename(__FILE__)) . '/languages' );
 
         // Register hooks
 
@@ -112,7 +112,7 @@ class GithubRibbon {
         global $post;
         $post_id = $post->ID;
         
-        $gr_options = get_option('github-ribbon-options');
+        $gr_options = $this->get_ribbon_options();
 
         if ($post_id > 0) {
             $gr_overridden = get_post_meta($post_id, 'gr_overridden', true);
@@ -241,7 +241,7 @@ class GithubRibbon {
                 </form>
             </div>
 
-            <iframe frameBorder="0" height = "950" src = "http://sudarmuthu.com/projects/wordpress/github-ribbon/sidebar.php?color=<?php echo get_user_option('admin_color'); ?>&version=<?php echo self::VERSION; ?>"></iframe>
+            <iframe frameBorder="0" height = "550" src = "http://sudarmuthu.com/projects/wordpress/github-ribbon/sidebar.php?color=<?php echo get_user_option('admin_color'); ?>&version=<?php echo self::VERSION; ?>"></iframe>
         </div>
 <?php
         // Display credits in Footer
@@ -253,7 +253,7 @@ class GithubRibbon {
      *
      */
     function add_style() {
-        $options = get_option('github-ribbon-options');
+        $options = $this->get_ribbon_options();
         if ($options['ribbon-button-type'] == 'CSS3 ribbons') {
             wp_enqueue_style('github-ribbon', plugin_dir_url(__FILE__) . 'styles/github-ribbon.css');
             wp_enqueue_style('github-ribbon-print', plugin_dir_url(__FILE__) . 'styles/github-ribbon-print.css', array(), false, 'print');
@@ -271,7 +271,7 @@ class GithubRibbon {
         global $post;
 
         if ( !is_feed() ) {
-            $global_options = get_option('github-ribbon-options');
+            $global_options = $this->get_ribbon_options();
 
             if ( is_singular() ) {
 
@@ -308,13 +308,7 @@ class GithubRibbon {
      */
     function append_ribbon($content, $options) {
         if (!$this->ribbon_placed) {
-            $global_options = wp_parse_args( get_option( 'github-ribbon-options' ), array(
-                'ribbon-type'        => 0,
-                'github-url'         => '',
-                'ribbon-new-tab'     => FALSE,
-                'ribbon_button_type' => 'Image ribbons'
-            ) );
-
+            $global_options = $this->get_ribbon_options();
             $ribbon = github_ribbon($options['ribbon-type'], $options['github-url'], $global_options['ribbon-new-tab'], $global_options['ribbon-button-type'], false);
             $content = $content . $ribbon;
             $this->ribbon_placed = true;
@@ -350,7 +344,7 @@ class GithubRibbon {
      * Callback for printing radio setting
      */
     function gr_enable_ribbon_callback() {
-        $options = get_option('github-ribbon-options');
+        $options = $this->get_ribbon_options();
         $items = array("Show", "Hide");
         foreach($items as $item) {
             echo "<label><input " . checked($item, $options['enable-ribbon'], false) . " value='$item' name='github-ribbon-options[enable-ribbon]' type='radio' /> $item</label> ";
@@ -361,7 +355,7 @@ class GithubRibbon {
      * Callback for printing github url Setting
      */
     function gr_github_url_callback() {
-        $options = get_option('github-ribbon-options');
+        $options = $this->get_ribbon_options();
         echo "<input id='github-url' name='github-ribbon-options[github-url]' size='40' type='text' value='{$options['github-url']}' ><br>";
         echo "<input id='ribbon-new-tab' name='github-ribbon-options[ribbon-new-tab]' type='checkbox' value='true' ", checked('true', $options['ribbon-new-tab']), " > ";
         _e('Open in new tab', 'github-ribbon');
@@ -371,7 +365,7 @@ class GithubRibbon {
      * Callback for Ribbon type Setting
      */
     function gr_ribbon_type_callback() {
-        $options = get_option('github-ribbon-options');
+        $options = $this->get_ribbon_options();
         $ribbon_class = new ReflectionClass('GithubRibbonType');
         $ribbon_types = $ribbon_class->getConstants();
         $ribbon_types = array_flip($ribbon_types);
@@ -388,7 +382,7 @@ class GithubRibbon {
      *
      */
     function gr_ribbon_button_type_callback() {
-        $options = get_option('github-ribbon-options');
+        $options = $this->get_ribbon_options();
 
         $ribbon_button_type = $options['ribbon-button-type'];
         $ribbon_button_type = ($ribbon_button_type == 'CSS3 ribbons') ? $ribbon_button_type : 'Image ribbons' ;
@@ -402,6 +396,24 @@ class GithubRibbon {
 
     function gr_ribbon_new_tab_callback() {
 
+    }
+
+    /**
+     * Get Ribbon options, after replacing default values
+     * 
+     * @access private
+     * @since 1.1.1
+     * 
+     * return (array) processed ribbon options
+     *
+     */
+    private function get_ribbon_options() {
+        return wp_parse_args( get_option( 'github-ribbon-options' ), array(
+            'ribbon-type'        => 0,
+            'github-url'         => '',
+            'ribbon-new-tab'     => FALSE,
+            'ribbon_button_type' => 'Image ribbons'
+        ) );
     }
 }
 
