@@ -4,7 +4,7 @@
 **Requires at least:** 3.8  
 **Donate Link:** http://sudarmuthu.com/if-you-wanna-thank-me  
 **Tested up to:** 3.8.1  
-**Stable tag:** 1.1.1  
+**Stable tag:** 1.1.2  
 
 Adds "Fork me on Github" ribbons to your WordPress posts
 
