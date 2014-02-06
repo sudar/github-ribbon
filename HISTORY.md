@@ -1,5 +1,8 @@
 ## Changelog ##
 
+### v1.1.2 (2014-02-06) (Dev time: 0.5 hour) ###
+- Fix: Fix undefined notice in add/edit post page
+
 ### v1.1.1 (2014-02-03) (Dev time: 0.5 hour) ###
 - Fix: Fix warnings and undefined notices
 - Tweak: Make it compatible with WordPress 3.8
