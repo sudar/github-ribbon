@@ -1,5 +1,8 @@
 ## Changelog ##
 
+### v1.1.3 (2014-10-04) (Dev time: 0.1 hour) ###
+- Fix: Resolve SSL mixed content warnings by referencing the ribbon image without a hard coded scheme
+
 ### v1.1.2 (2014-02-06) (Dev time: 0.5 hour) ###
 - Fix: Fix undefined notice in add/edit post page
 
