@@ -16,7 +16,7 @@ Domain Path: languages/
 Check readme file for full release notes
 */
 
-/*  Copyright 2010  Sudar Muthu  (email : sudar@sudarmuthu.com)
+/**  Copyright 2010  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
@@ -111,7 +111,7 @@ class GithubRibbon {
     function inner_custom_box() {
         global $post;
         $post_id = $post->ID;
-        
+
         $gr_options = $this->get_ribbon_options();
 
         if ($post_id > 0) {
@@ -262,7 +262,7 @@ class GithubRibbon {
 
     /**
      * Add the github ribbon
-     * 
+     *
      * @global object $post Current post
      * @param string $content Post content
      * @return string modified content
@@ -400,10 +400,10 @@ class GithubRibbon {
 
     /**
      * Get Ribbon options, after replacing default values
-     * 
+     *
      * @access private
      * @since 1.1.1
-     * 
+     *
      * return (array) processed ribbon options
      *
      */
@@ -538,13 +538,13 @@ EOD;
 function github_ribbon($ribbon_type, $github_url, $in_tab = FALSE, $ribbon_button_type = 'Image ribbons', $display = TRUE) {
 
     $output = '';
-    
+
     if ($in_tab) {
         $target = ' target = "_blank" ';
     } else {
         $target = '';
     }
-        
+
     if ($ribbon_button_type == 'CSS3 ribbons') {
         $ribbon_class = new ReflectionClass('GithubRibbonType');
         $ribbon_types = $ribbon_class->getConstants();
@@ -566,7 +566,7 @@ EOD;
     } else {
         $output = '<a class = "github-ribbon" href="' . $github_url . '"' . $target . '>' . GithubRibbonType::get_ribbon_image($ribbon_type) . '</a>';
     }
-    
+
     if ($display) {
         echo $output;
     } else {
