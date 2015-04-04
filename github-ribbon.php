@@ -99,10 +99,22 @@ class GithubRibbon {
      */
     function add_custom_box() {
 
-        add_meta_box( 'github_ribbon_box', __( 'Github Ribbon', 'github-ribbon' ),
-                    array(&$this, 'inner_custom_box'), 'post', 'side' );
-        add_meta_box( 'github_ribbon_box', __( 'Github Ribbon', 'github-ribbon' ),
-                    array(&$this, 'inner_custom_box'), 'page', 'side' );
+        $post_types = get_post_types( array(
+		    'public' => true
+	    ) );
+
+        foreach ( $post_types as $post_type ) {
+
+	        add_meta_box(
+		        'github_ribbon_box',
+		        __( 'Github Ribbon', 'github-ribbon' ),
+		        array(&$this, 'inner_custom_box'),
+		        $post_type,
+		        'side'
+	        );
+
+        }
+        
     }
 
     /**
