@@ -38,7 +38,6 @@ Check readme file for full release notes
 class GithubRibbon {
 
     const VERSION = '1.1.3';
-    private $ribbon_placed = FALSE; //flag to see if the ribbon is already placed
 
     /**
      * Initalize the plugin by registering the hooks
@@ -319,14 +318,13 @@ class GithubRibbon {
      * @return string Modified content
      */
     function append_ribbon($content, $options) {
-        if (!$this->ribbon_placed) {
-            $global_options = $this->get_ribbon_options();
-            $ribbon = github_ribbon($options['ribbon-type'], $options['github-url'], $global_options['ribbon-new-tab'], $global_options['ribbon-button-type'], false);
-            $content = $content . $ribbon;
-            $this->ribbon_placed = true;
-        }
+
+        $global_options = $this->get_ribbon_options();
+        $ribbon = github_ribbon($options['ribbon-type'], $options['github-url'], $global_options['ribbon-new-tab'], $global_options['ribbon-button-type'], false);
+        $content = $content . $ribbon;
 
         return $content;
+        
     }
 
     // ---------------------------Callback functions ----------------------------------------------------------
