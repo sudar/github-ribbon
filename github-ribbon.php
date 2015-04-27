@@ -36,9 +36,7 @@ Check readme file for full release notes
  * Github Ribbon Plugin Class
  */
 class GithubRibbon {
-
     const VERSION = '1.1.3';
-    private $ribbon_placed = FALSE; //flag to see if the ribbon is already placed
 
     /**
      * Initalize the plugin by registering the hooks
@@ -63,8 +61,8 @@ class GithubRibbon {
         // Enqueue the script
         add_action('template_redirect', array(&$this, 'add_style'));
 
-        // Register filters
-        add_filter('the_content', array(&$this, 'add_ribbon'), 99);
+        // Register action
+        add_action( 'wp_footer', array( $this, 'add_ribbon' ) );
 
         $plugin = plugin_basename(__FILE__);
         add_filter("plugin_action_links_$plugin", array(&$this, 'add_action_links'));
@@ -264,10 +262,8 @@ class GithubRibbon {
      * Add the github ribbon
      *
      * @global object $post Current post
-     * @param string $content Post content
-     * @return string modified content
      */
-    function add_ribbon( $content ) {
+    function add_ribbon() {
         global $post;
 
         if ( !is_feed() ) {
@@ -283,38 +279,30 @@ class GithubRibbon {
 
                     if ( $gr_options['enable-ribbon'] == "Show" ) {
                         // Ribbon is enabled
-                        return $this->append_ribbon($content, $gr_options);
-                    } else {
-                        // Ribbon is disabled
-                        return $content;
+                        echo $this->get_ribbon_code($gr_options);
                     }
-                }
-            }
-
-            if ($global_options['enable-ribbon'] == "Show") {
-                $content = $this->append_ribbon($content, $global_options);
-            }
+				} else {
+					if ($global_options['enable-ribbon'] == "Show") {
+						echo $this->get_ribbon_code($global_options);
+					}
+				}
+			} else {
+				if ($global_options['enable-ribbon'] == "Show") {
+					echo $this->get_ribbon_code($global_options);
+				}
+			}
         }
-
-        return $content;
     }
 
     /**
      * Helper function for add_ribbon
      *
-     * @param string $content The post content
      * @param array $options Options
-     * @return string Modified content
+     * @return string Ribbon content
      */
-    function append_ribbon($content, $options) {
-        if (!$this->ribbon_placed) {
-            $global_options = $this->get_ribbon_options();
-            $ribbon = github_ribbon($options['ribbon-type'], $options['github-url'], $global_options['ribbon-new-tab'], $global_options['ribbon-button-type'], false);
-            $content = $content . $ribbon;
-            $this->ribbon_placed = true;
-        }
-
-        return $content;
+    function get_ribbon_code( $options ) {
+		$global_options = $this->get_ribbon_options();
+		return github_ribbon($options['ribbon-type'], $options['github-url'], $global_options['ribbon-new-tab'], $global_options['ribbon-button-type'], false);
     }
 
     // ---------------------------Callback functions ----------------------------------------------------------
@@ -404,15 +392,15 @@ class GithubRibbon {
      * @access private
      * @since 1.1.1
      *
-     * return (array) processed ribbon options
-     *
+     * @return array Ribbon options
      */
     private function get_ribbon_options() {
         return wp_parse_args( get_option( 'github-ribbon-options' ), array(
+			'enable-ribbon'      => 'Hide',
             'ribbon-type'        => 0,
             'github-url'         => '',
-            'ribbon-new-tab'     => FALSE,
-            'ribbon_button_type' => 'Image ribbons'
+            'ribbon-new-tab'     => false,
+            'ribbon-button-type' => 'Image ribbons',
         ) );
     }
 }

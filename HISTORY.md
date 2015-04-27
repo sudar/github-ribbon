@@ -1,5 +1,10 @@
 ## Changelog ##
 
+### v1.2 (2015-04-27) (Dev time: 1 hour) ###
+
+- New: Add support for all public post types
+- Tweak: Change the filter that is used to generate the ribbon HTML code
+
 ### v1.1.3 (2014-10-04) (Dev time: 0.1 hour) ###
 - Fix: Resolve SSL mixed content warnings by referencing the ribbon image without a hard coded scheme
 
