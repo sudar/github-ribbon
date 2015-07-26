@@ -3,8 +3,8 @@
 **Tags:** github, ribbon, git  
 **Requires at least:** 3.8  
 **Donate Link:** http://sudarmuthu.com/if-you-wanna-thank-me  
-**Tested up to:** 4.2  
-**Stable tag:** 1.2  
+**Tested up to:** 4.2.3  
+**Stable tag:** 1.2.1  
 
 Adds "Fork me on Github" ribbons to your WordPress posts
 
