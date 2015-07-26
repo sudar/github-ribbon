@@ -1,5 +1,8 @@
 ## Changelog ##
 
+### v1.2.1 (2015-07-26) (Dev time: 1 hour) ###
+- Tweak: Add z-index to the ribbon. (Thanks https://github.com/vivex)
+
 ### v1.2 (2015-04-27) (Dev time: 1 hour) ###
 
 - New: Add support for all public post types
