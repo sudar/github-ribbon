@@ -6,7 +6,8 @@ Plugin URI: http://sudarmuthu.com/wordpress/github-ribbon
 Description: Adds "Fork me on Github" ribbons to your WordPress posts
 Author: Sudar
 Version: 1.2.1
-License: GPL
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
 Author URI: http://sudarmuthu.com/
 Text Domain: github-ribbon
@@ -112,7 +113,7 @@ class GithubRibbon {
 	        );
 
         }
-        
+
     }
 
     /**
