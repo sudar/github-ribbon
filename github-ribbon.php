@@ -519,7 +519,8 @@ EOD;
 
             case self::WHITE_RIGHT:
                 return <<<EOD
-<img style="position: fixed; top: 0; right: 0; border: 0;z-index:100000" src="//s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" />
+<img style="position: fixed; top: 0; right: 0; border: 0;z-index:100000" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_white_ffffff.png?resize=149%2C149"
+class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1" alt="Fork me on GitHub" /> 
 EOD;
                 break;
 
